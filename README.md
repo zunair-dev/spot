@@ -38,11 +38,12 @@ Install the bundle
   bundle install
 ```
 
-Create Database & run the migration
+Create Database, run the migrations & seed the data
 
 ```bash
   rails db:create
   rails db:migrate
+  rails db:seed
 ```
 
 Install dependencies

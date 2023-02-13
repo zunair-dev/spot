@@ -1,44 +1,13 @@
-import React, { Component } from 'react';
-import './App.css';
-import SpotsContainer from './components/SpotsContainer'
+import { BrowserRouter } from "react-router-dom";
+import Routing from "./routes";
+import "./styles/global.css";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="container">
-        <div className="header">
-          <h1>Spots List</h1>
-        </div>
-        <SpotsContainer />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
+  );
 }
 
 export default App;
-
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

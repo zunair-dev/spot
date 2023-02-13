@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import update from "immutability-helper";
+import { Link } from "react-router-dom";
 
-class SpotsContainer extends Component {
+class HomePagesContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,44 +85,41 @@ class SpotsContainer extends Component {
 
   render() {
     return (
-      <div>
-        <input
-          className="taskInput"
-          type="text"
-          placeholder="Add a spot"
-          maxLength="50"
-          onKeyPress={this.createSpot}
-          value={this.state.inputValue}
-          onChange={this.handleChange}
-        />
-
-        <div className="listWrapper">
-          <ul className="taskList">
-            {this.state.spots.map((spot) => {
-              return (
-                <li className="task" spot={spot} key={spot.id}>
-                  <input
-                    className="taskCheckbox"
-                    type="checkbox"
-                    onChange={(e) => this.updateSpot(e, spot.id)}
+      <div className="">
+        <div className="header">
+          <h1>Spots & Reviews</h1>
+        </div>
+        <hr></hr>
+        <Link to="/NewSpot" className="simple-text">
+          <button type="button" className="new-button">
+            Add New Spot
+          </button>
+        </Link>
+        <div className="grid-container">
+          {this.state.spots.map((spot) => {
+            return (
+              <div className="grid-item" spot={spot} key={spot.id}>
+                <Link to="/viewSpot" className="simple-text" state={{ spot }}>
+                  <img
+                    src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                    alt="cover"
+                    className="w-full rounded-lg"
                   />
-                  <label className="taskLabel">{spot.title}</label>
-                  <span className="deleteTaskBtn">
-                    <span
-                      className="deleteTaskBtn"
-                      onClick={(e) => this.deleteSpot(spot.id)}
-                    >
-                      x
-                    </span>
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+                  <label className="title">{spot.title}</label>
+                  <p>
+                    <i>{spot.description || "N/A"}</i>
+                  </p>
+                  <p>
+                    <b>${spot.price || "0.0"} </b>/ hour
+                  </p>
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </div>
     );
   }
 }
 
-export default SpotsContainer;
+export default HomePagesContainer;
